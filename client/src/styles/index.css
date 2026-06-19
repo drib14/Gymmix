@@ -666,3 +666,42 @@ select.input option { background: var(--color-bg-3); color: var(--color-text); }
   .btn-xl { padding: 13px 24px; font-size: 0.95rem; }
   .card { padding: var(--space-4); }
 }
+
+/* ── Custom Platform Responsiveness Extensions ─────────── */
+
+/* Hide desktop elements on mobile/tablet viewports */
+@media (min-width: 769px) {
+  .hide-desktop { display: none !important; }
+}
+
+/* Force inline grids to scale down on smaller screens */
+.grid-responsive {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: var(--space-6) !important;
+}
+
+@media (max-width: 900px) {
+  .grid-responsive {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-responsive, .grid-responsive-2 {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .grid-responsive-column {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  /* Handle mobile form layouts and inputs */
+  .grid-responsive.grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* Force custom split content structures (like Contact page) to stack */
+  .grid-responsive[style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Modal from '../components/ui/Modal';
-import { FiSearch, FiCalendar, FiClock, FiPlus, FiTag, FiBookOpen, FiImage } from 'react-icons/fi';
+import { FiSearch, FiCalendar, FiClock, FiPlus, FiTag, FiBookOpen, FiImage, FiArrowRight } from 'react-icons/fi';
 import api from '../services/api';
 import useAuthStore from '../store/authStore';
 import useToast from '../hooks/useToast';

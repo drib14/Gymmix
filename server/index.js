@@ -26,6 +26,7 @@ const blogRoutes = require('./routes/blog.routes');
 const notificationRoutes = require('./routes/notification.routes');
 const analyticsRoutes = require('./routes/analytics.routes');
 const reviewRoutes = require('./routes/review.routes');
+const supportRoutes = require('./routes/support.routes');
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -76,6 +77,7 @@ app.use('/api/blog', blogRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/support', supportRoutes);
 
 // ── Error Handling ─────────────────────────────────────────
 app.use(notFound);

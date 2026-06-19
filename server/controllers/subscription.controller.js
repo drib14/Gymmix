@@ -3,6 +3,7 @@ const User = require('../models/User');
 const { createPaymentIntent, attachPaymentMethod, retrievePaymentIntent, PLAN_PRICES } = require('../services/paymongo.service');
 const { createNotification } = require('./notification.controller');
 const { sendSuccess, sendError } = require('../utils/apiResponse');
+const { sendSubscriptionActivatedEmail } = require('../services/email.service');
 
 // ── GET /subscriptions/plans ───────────────────────────────
 exports.getPlans = async (req, res, next) => {
@@ -73,10 +74,18 @@ exports.webhook = async (req, res, next) => {
       await createNotification({
         recipient: user._id,
         type: 'subscription',
-        title: '🎉 Subscription Activated!',
+        title: 'Subscription Activated',
         message: `Your ${metadata.tier} plan is now active. Enjoy all premium features!`,
         link: '/subscription',
       });
+
+      await sendSubscriptionActivatedEmail({
+        to: user.email,
+        name: `${user.firstName} ${user.lastName}`,
+        tier: metadata.tier,
+        amount: intent.amount,
+        expiryDate: endDate,
+      }).catch((err) => console.error('Subscription email notification failed:', err));
     }
 
     return res.sendStatus(200);

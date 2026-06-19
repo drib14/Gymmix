@@ -1,0 +1,105 @@
+/* ============================================================
+   GYMMIX — Dynamic Skeleton Loaders
+   ============================================================ */
+
+.skeleton {
+  background: linear-gradient(90deg, var(--color-bg-3) 25%, var(--color-bg-4) 50%, var(--color-bg-3) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Skeleton Shapes ───────────────────────────────────── */
+.skeleton-text { height: 14px; border-radius: var(--radius-sm); }
+.skeleton-text-lg { height: 20px; border-radius: var(--radius-sm); }
+.skeleton-text-xl { height: 28px; border-radius: var(--radius-sm); }
+.skeleton-circle { border-radius: 50%; }
+.skeleton-card { border-radius: var(--radius-lg); }
+.skeleton-btn { height: 40px; border-radius: var(--radius-md); }
+.skeleton-img { border-radius: var(--radius-md); }
+.skeleton-badge { height: 22px; border-radius: var(--radius-full); width: 60px; }
+
+/* ── Skeleton Card Variants ───────────────────────────── */
+.skeleton-exercise-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.skeleton-workout-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.skeleton-stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.skeleton-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+}
+
+.skeleton-list-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.skeleton-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.skeleton-chart {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  min-height: 220px;
+}
+
+.skeleton-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+/* ── Table Skeleton ────────────────────────────────────── */
+.skeleton-table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.skeleton-table-row {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+  align-items: center;
+}

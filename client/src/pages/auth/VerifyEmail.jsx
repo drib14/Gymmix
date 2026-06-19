@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { HiLightningBolt } from 'react-icons/hi';
+import { LogoFull } from '../../components/ui/Logo';
 import { FiRefreshCw, FiArrowRight, FiMail } from 'react-icons/fi';
 import api from '../../services/api';
 import useAuthStore from '../../store/authStore';
@@ -17,6 +17,7 @@ const VerifyEmail = () => {
   const inputRefs = useRef([]);
 
   useEffect(() => {
+    document.title = 'Gymmix | Verify Email';
     if (!registrationUserId) navigate('/register');
     inputRefs.current[0]?.focus();
   }, [registrationUserId]);
@@ -89,13 +90,8 @@ const VerifyEmail = () => {
       background: 'radial-gradient(ellipse 80% 60% at 50% -20%, rgba(200,241,53,0.06), transparent)',
     }}>
       <div style={{ width: '100%', maxWidth: '420px', textAlign: 'center' }} className="animate-fade-in-up">
-        <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '32px' }}>
-          <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'linear-gradient(135deg, #C8F135, #A8D020)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0D0F14' }}>
-            <HiLightningBolt size={22} />
-          </div>
-          <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900, fontSize: '1.5rem', letterSpacing: '2px', color: '#F0F2F8' }}>
-            GYM<span style={{ color: '#C8F135' }}>MIX</span>
-          </span>
+        <Link to="/" style={{ display: 'inline-block', textDecoration: 'none', marginBottom: '32px' }}>
+          <LogoFull size={24} fontSize="1.5rem" />
         </Link>
 
         <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(200,241,53,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', color: '#C8F135' }}>

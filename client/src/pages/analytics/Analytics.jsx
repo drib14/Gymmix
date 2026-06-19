@@ -15,6 +15,10 @@ const Analytics = () => {
   const [freqDays, setFreqDays] = useState(90);
 
   useEffect(() => {
+    document.title = 'Gymmix | Analytics';
+  }, []);
+
+  useEffect(() => {
     Promise.all([
       api.get('/analytics/dashboard'),
       api.get('/analytics/workout-frequency', { params: { days: freqDays } }),

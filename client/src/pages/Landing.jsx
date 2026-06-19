@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiCheck, FiArrowRight, FiStar, FiZap, FiTarget, FiTrendingUp, FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import { GiMuscleUp, GiWeightLiftingUp } from 'react-icons/gi';
 import { MdOutlineFoodBank } from 'react-icons/md';
-import { HiLightningBolt } from 'react-icons/hi';
+import { LogoIcon } from '../components/ui/Logo';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import api from '../services/api';
@@ -35,6 +35,10 @@ const Landing = () => {
   const [newsEmail, setNewsEmail] = useState('');
   const [newsLoading, setNewsLoading] = useState(false);
   const toast = useToast();
+
+  useEffect(() => {
+    document.title = 'Gymmix';
+  }, []);
 
   const handleNewsletter = async (e) => {
     e.preventDefault();
@@ -85,7 +89,7 @@ const Landing = () => {
             background: 'rgba(200,241,53,0.1)', border: '1px solid rgba(200,241,53,0.3)',
             borderRadius: '100px', padding: '6px 16px', marginBottom: '32px',
           }}>
-            <HiLightningBolt style={{ color: '#C8F135' }} />
+            <LogoIcon size={16} />
             <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#C8F135', letterSpacing: '1px' }}>
               THE ULTIMATE FITNESS PLATFORM
             </span>

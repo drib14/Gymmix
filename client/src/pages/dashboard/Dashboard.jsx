@@ -21,6 +21,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'Gymmix | Dashboard';
     api.get('/analytics/dashboard')
       .then((res) => setData(res.data.data))
       .catch(() => {})
@@ -29,9 +30,48 @@ const Dashboard = () => {
 
   const greeting = () => {
     const h = new Date().getHours();
-    if (h < 12) return 'Good morning';
-    if (h < 17) return 'Good afternoon';
-    return 'Good evening';
+    let base = 'Good morning';
+    if (h >= 12 && h < 17) base = 'Good afternoon';
+    else if (h >= 17) base = 'Good evening';
+    
+    if (user?.gender === 'female') return `${base}, Queen 👑`;
+    if (user?.gender === 'male') return `${base}, Champ 🦾`;
+    return `${base} ⚡`;
+  };
+
+  const getPersonalizedBanner = () => {
+    const gender = user?.gender || 'prefer_not_to_say';
+    const banners = {
+      female: {
+        quote: "Strength does not come from what you can do. It comes from overcoming the things you once thought you couldn't.",
+        focus: ["Glutes & Lower Body Tone", "Pilates & Core Stability", "HIIT Cardio Burn"],
+        bg: 'linear-gradient(135deg, rgba(236,72,153,0.12), rgba(200,241,53,0.02))',
+        border: '1px solid rgba(236,72,153,0.2)',
+        badgeColor: '#EC4899'
+      },
+      male: {
+        quote: "The only place where success comes before work is in the dictionary. Push harder today!",
+        focus: ["Upper Body Power & Chest", "Heavy Squats & Leg Strength", "Calisthenics & Weighted Core"],
+        bg: 'linear-gradient(135deg, rgba(59,130,246,0.12), rgba(200,241,53,0.02))',
+        border: '1px solid rgba(59,130,246,0.2)',
+        badgeColor: '#3B82F6'
+      },
+      other: {
+        quote: "Your body can stand almost anything. It's your mind that you have to convince.",
+        focus: ["Full Body Compound Movements", "Cardiovascular Endurance", "Mobility & Flexibility Routine"],
+        bg: 'linear-gradient(135deg, rgba(200,241,53,0.12), rgba(12,15,20,0.5))',
+        border: '1px solid rgba(200,241,53,0.2)',
+        badgeColor: '#C8F135'
+      },
+      prefer_not_to_say: {
+        quote: "Your body can stand almost anything. It's your mind that you have to convince.",
+        focus: ["Full Body Compound Movements", "Cardiovascular Endurance", "Mobility & Flexibility Routine"],
+        bg: 'linear-gradient(135deg, rgba(200,241,53,0.12), rgba(12,15,20,0.5))',
+        border: '1px solid rgba(200,241,53,0.2)',
+        badgeColor: '#C8F135'
+      }
+    };
+    return banners[gender] || banners.prefer_not_to_say;
   };
 
   return (
@@ -41,7 +81,7 @@ const Dashboard = () => {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
           <div>
             <h2 style={{ fontFamily: 'Outfit, sans-serif', marginBottom: '4px' }}>
-              {greeting()}, <span style={{ color: '#C8F135' }}>{user?.firstName}</span>! 💪
+              {greeting()}, <span style={{ color: '#C8F135' }}>{user?.firstName}</span>!
             </h2>
             <p style={{ color: '#6B7280', fontSize: '0.875rem' }}>
               {data?.user?.lastWorkoutDate
@@ -78,6 +118,38 @@ const Dashboard = () => {
           ))
         )}
       </div>
+
+      {/* Personalized Banner */}
+      {!loading && (
+        <div style={{
+          padding: '20px',
+          borderRadius: '16px',
+          background: getPersonalizedBanner().bg,
+          border: getPersonalizedBanner().border,
+          marginBottom: '32px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+            <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', color: getPersonalizedBanner().badgeColor, fontWeight: 700 }}>
+              🎯 Personal Focus Area ({user?.gender ? user.gender.replace('_', ' ') : 'unspecified'})
+            </span>
+            <span style={{ fontSize: '0.75rem', color: '#9CA3AF' }}>Customized Routine Tips</span>
+          </div>
+          <p style={{ fontStyle: 'italic', fontSize: '0.92rem', color: '#F0F2F8', margin: '4px 0', lineHeight: 1.5 }}>
+            "{getPersonalizedBanner().quote}"
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '6px' }}>
+            {getPersonalizedBanner().focus.map((f, idx) => (
+              <span key={idx} className="badge" style={{ background: '#12151C', border: `1px solid ${getPersonalizedBanner().badgeColor}40`, color: '#F0F2F8', padding: '6px 12px', borderRadius: '20px', fontSize: '0.78rem' }}>
+                ⭐ {f}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Charts Row */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '24px', marginBottom: '32px' }}>

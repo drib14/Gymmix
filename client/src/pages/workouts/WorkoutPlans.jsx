@@ -21,6 +21,7 @@ const WorkoutPlans = () => {
   const [form, setForm] = useState({ name: '', description: '', frequency: 3, difficulty: 'intermediate', goal: 'general_fitness' });
 
   useEffect(() => {
+    document.title = 'Gymmix | Workout Plans';
     api.get('/workout-plans')
       .then((res) => setPlans(res.data.data.plans || []))
       .catch(() => toast.error('Failed to load plans.'))

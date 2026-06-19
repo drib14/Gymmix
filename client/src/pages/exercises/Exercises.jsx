@@ -113,6 +113,10 @@ const Exercises = () => {
   }, [filters]);
 
   useEffect(() => {
+    document.title = 'Gymmix | Exercise Library';
+  }, []);
+
+  useEffect(() => {
     const t = setTimeout(() => { setPage(1); fetchExercises(1); }, 400);
     return () => clearTimeout(t);
   }, [filters]);

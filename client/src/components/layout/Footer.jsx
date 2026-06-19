@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiInstagram, FiTwitter, FiYoutube, FiFacebook, FiArrowRight } from 'react-icons/fi';
-import { HiLightningBolt } from 'react-icons/hi';
+import { LogoFull } from '../ui/Logo';
 import api from '../../services/api';
 import useToast from '../../hooks/useToast';
 
@@ -37,17 +37,8 @@ const Footer = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', marginBottom: '48px' }}>
           {/* Brand */}
           <div style={{ gridColumn: 'span 1' }}>
-            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '16px' }}>
-              <div style={{
-                width: '36px', height: '36px', borderRadius: '8px',
-                background: 'linear-gradient(135deg, #C8F135, #A8D020)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0D0F14',
-              }}>
-                <HiLightningBolt size={20} />
-              </div>
-              <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900, fontSize: '1.3rem', letterSpacing: '2px', color: '#F0F2F8' }}>
-                GYM<span style={{ color: '#C8F135' }}>MIX</span>
-              </span>
+            <Link to="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: '16px' }}>
+              <LogoFull size={24} fontSize="1.3rem" />
             </Link>
             <p style={{ fontSize: '0.85rem', color: '#6B7280', lineHeight: 1.7, maxWidth: '240px' }}>
               Train smarter. Live stronger. The all-in-one platform for serious athletes and fitness beginners.

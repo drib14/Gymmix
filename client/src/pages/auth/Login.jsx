@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowRight } from 'react-icons/fi';
-import { HiLightningBolt } from 'react-icons/hi';
+import { LogoFull } from '../../components/ui/Logo';
 import api from '../../services/api';
 import useAuthStore from '../../store/authStore';
 import useToast from '../../hooks/useToast';
@@ -12,6 +12,10 @@ const Login = () => {
   const toast = useToast();
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
+
+  useEffect(() => {
+    document.title = 'Gymmix | Login';
+  }, []);
   const [form, setForm] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
 
@@ -57,13 +61,8 @@ const Login = () => {
     }}>
       <div style={{ width: '100%', maxWidth: '420px' }} className="animate-fade-in-up">
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '24px' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'linear-gradient(135deg, #C8F135, #A8D020)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0D0F14' }}>
-              <HiLightningBolt size={22} />
-            </div>
-            <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900, fontSize: '1.5rem', letterSpacing: '2px', color: '#F0F2F8' }}>
-              GYM<span style={{ color: '#C8F135' }}>MIX</span>
-            </span>
+          <Link to="/" style={{ display: 'inline-block', textDecoration: 'none', marginBottom: '24px' }}>
+            <LogoFull size={24} fontSize="1.5rem" />
           </Link>
           <h2 style={{ fontFamily: 'Outfit, sans-serif', marginBottom: '6px' }}>Welcome back</h2>
           <p style={{ color: '#6B7280', fontSize: '0.875rem' }}>Sign in to continue your journey</p>

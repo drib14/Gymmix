@@ -22,6 +22,7 @@ const Goals = () => {
   const [form, setForm] = useState({ title: '', description: '', type: 'custom', targetValue: '', currentValue: '', unit: '', deadline: '', status: 'active' });
 
   useEffect(() => {
+    document.title = 'Gymmix | Goals';
     api.get('/goals')
       .then((res) => setGoals(res.data.data.goals || []))
       .catch(() => toast.error('Failed to load goals.'))

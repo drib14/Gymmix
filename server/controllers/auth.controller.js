@@ -9,7 +9,7 @@ const crypto = require('crypto');
 // ── POST /auth/register ─────────────────────────────────
 exports.register = async (req, res, next) => {
   try {
-    const { firstName, lastName, username, email, password, acceptedTerms, acceptedPrivacy, newsletterSubscribed } = req.body;
+    const { firstName, lastName, username, email, password, acceptedTerms, acceptedPrivacy, newsletterSubscribed, gender } = req.body;
 
     if (!acceptedTerms || !acceptedPrivacy) {
       return sendError(res, 'You must accept the Terms of Service and Privacy Policy.', 422);
@@ -33,6 +33,7 @@ exports.register = async (req, res, next) => {
       acceptedTerms,
       acceptedPrivacy,
       newsletterSubscribed: !!newsletterSubscribed,
+      gender: gender || 'prefer_not_to_say',
       otp,
       otpExpiry,
     });

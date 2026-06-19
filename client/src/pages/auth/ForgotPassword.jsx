@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiMail, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
-import { HiLightningBolt } from 'react-icons/hi';
+import { LogoFull } from '../../components/ui/Logo';
 import api from '../../services/api';
 import useToast from '../../hooks/useToast';
 
@@ -12,6 +12,10 @@ const ForgotPassword = () => {
   const [userId, setUserId] = useState(null);
   const toast = useToast();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = 'Gymmix | Forgot Password';
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,11 +56,8 @@ const ForgotPassword = () => {
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', background: 'radial-gradient(ellipse 80% 60% at 50% -20%, rgba(200,241,53,0.06), transparent)' }}>
       <div style={{ width: '100%', maxWidth: '400px' }} className="animate-fade-in-up">
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '24px' }}>
-            <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'linear-gradient(135deg, #C8F135, #A8D020)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0D0F14' }}>
-              <HiLightningBolt size={18} />
-            </div>
-            <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900, fontSize: '1.3rem', letterSpacing: '2px', color: '#F0F2F8' }}>GYM<span style={{ color: '#C8F135' }}>MIX</span></span>
+          <Link to="/" style={{ display: 'inline-block', textDecoration: 'none', marginBottom: '24px' }}>
+            <LogoFull size={24} fontSize="1.3rem" />
           </Link>
           <h2 style={{ fontFamily: 'Outfit, sans-serif', marginBottom: '6px' }}>Forgot password?</h2>
           <p style={{ color: '#6B7280', fontSize: '0.875rem' }}>Enter your email and we'll send you a reset OTP.</p>

@@ -7,11 +7,13 @@ import Modal from '../../components/ui/Modal';
 import { ChartSkeleton } from '../../components/ui/Skeleton';
 import api from '../../services/api';
 import useToast from '../../hooks/useToast';
+import useAuthStore from '../../store/authStore';
 
 const MEAL_TYPES = ['breakfast', 'lunch', 'dinner', 'snack', 'pre_workout', 'post_workout'];
 
 const Nutrition = () => {
   const toast = useToast();
+  const { user } = useAuthStore();
   const [summary, setSummary] = useState(null);
   const [trend, setTrend] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,6 +22,7 @@ const Nutrition = () => {
   const [form, setForm] = useState({ mealType: 'breakfast', items: [{ name: '', calories: '', protein: '', carbs: '', fats: '' }] });
 
   useEffect(() => {
+    document.title = 'Gymmix | Nutrition';
     Promise.all([
       api.get('/nutrition/daily-summary'),
       api.get('/nutrition/weekly-trend'),
@@ -56,8 +59,18 @@ const Nutrition = () => {
     } finally { setLogging(false); }
   };
 
+  const getMacroGoals = () => {
+    if (user?.gender === 'male') {
+      return { calories: 2500, protein: 160, carbs: 300, fats: 85 };
+    }
+    if (user?.gender === 'female') {
+      return { calories: 1800, protein: 120, carbs: 200, fats: 60 };
+    }
+    return { calories: 2200, protein: 140, carbs: 250, fats: 75 };
+  };
+
   const macros = summary?.summary;
-  const MACRO_GOALS = { calories: 2200, protein: 150, carbs: 250, fats: 80 };
+  const MACRO_GOALS = getMacroGoals();
 
   const MacroBar = ({ label, value, goal, color }) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>

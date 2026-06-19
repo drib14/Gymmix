@@ -14,6 +14,7 @@ const registerRules = [
   body('confirmPassword').custom((v, { req }) => { if (v !== req.body.password) throw new Error('Passwords do not match'); return true; }),
   body('acceptedTerms').equals('true').withMessage('You must accept the Terms of Service'),
   body('acceptedPrivacy').equals('true').withMessage('You must accept the Privacy Policy'),
+  body('gender').optional().isIn(['male', 'female', 'other', 'prefer_not_to_say']).withMessage('Invalid gender value'),
 ];
 
 router.post('/register', authLimiter, registerRules, validate, ctrl.register);

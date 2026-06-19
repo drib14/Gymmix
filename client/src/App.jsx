@@ -20,20 +20,32 @@ const Nutrition = lazy(() => import('./pages/nutrition/Nutrition'));
 const Goals = lazy(() => import('./pages/goals/Goals'));
 const Analytics = lazy(() => import('./pages/analytics/Analytics'));
 const Profile = lazy(() => import('./pages/profile/Profile'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const Faq = lazy(() => import('./pages/Faq'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Terms = lazy(() => import('./pages/Terms'));
+const Cookies = lazy(() => import('./pages/Cookies'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 // Lazy stubs for remaining pages
 const NotFound = lazy(() => import('./pages/NotFound'));
+
+// LogoIcon import for loading screen
+import { LogoIcon } from './components/ui/Logo';
 
 const LoadingScreen = () => (
   <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0D0F14' }}>
     <div style={{ textAlign: 'center' }}>
       <div style={{
-        width: '48px', height: '48px', borderRadius: '12px',
-        background: 'linear-gradient(135deg, #C8F135, #A8D020)',
+        width: '56px', height: '56px', borderRadius: '14px',
+        background: '#12151C', border: '1.5px solid #C8F135',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: '1.8rem', margin: '0 auto 16px', animation: 'pulse 1.5s ease-in-out infinite',
+        margin: '0 auto 16px', animation: 'pulse 1.5s ease-in-out infinite',
+        boxShadow: '0 0 15px rgba(200, 241, 53, 0.2)'
       }}>
-        ⚡
+        <LogoIcon size={30} />
       </div>
       <div className="spinner" style={{ margin: '0 auto' }} />
     </div>
@@ -75,6 +87,16 @@ const AppContent = () => {
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
         <Route path="/reset-password" element={<ResetPassword />} />
+
+        {/* Public Footer pages */}
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/cookies" element={<Cookies />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* Protected */}
         <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />

@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fi';
 import { GiMuscleUp, GiWeightLiftingUp } from 'react-icons/gi';
 import { MdOutlineFoodBank } from 'react-icons/md';
-import { HiLightningBolt } from 'react-icons/hi';
+import { LogoIcon } from '../ui/Logo';
 import useAuthStore from '../../store/authStore';
 
 const navItems = [
@@ -89,7 +89,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             padding: '8px 12px',
             display: 'flex', alignItems: 'center', gap: '8px',
           }}>
-            <HiLightningBolt style={{ color: '#C8F135', fontSize: '14px' }} />
+            <LogoIcon size={14} />
             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#C8F135', letterSpacing: '1px', textTransform: 'uppercase' }}>
               {user.subscriptionTier} Plan
             </span>

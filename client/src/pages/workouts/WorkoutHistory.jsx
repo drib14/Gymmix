@@ -20,6 +20,10 @@ const WorkoutHistory = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
+    document.title = 'Gymmix | Workout History';
+  }, []);
+
+  useEffect(() => {
     fetchLogs(page);
   }, [page]);
 

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiBell, FiMenu, FiX, FiUser, FiSettings, FiLogOut, FiChevronDown } from 'react-icons/fi';
-import { HiLightningBolt } from 'react-icons/hi';
+import { LogoFull } from '../ui/Logo';
 import useAuthStore from '../../store/authStore';
 import useNotificationStore from '../../store/notificationStore';
 import useToast from '../../hooks/useToast';
@@ -59,18 +59,8 @@ const Navbar = ({ onMenuToggle, isSidebarOpen }) => {
       )}
 
       {/* Logo */}
-      <Link to={isAuthenticated ? '/dashboard' : '/'} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
-        <div style={{
-          width: '34px', height: '34px', borderRadius: '8px',
-          background: 'linear-gradient(135deg, #C8F135, #A8D020)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: '1.2rem', color: '#0D0F14',
-        }}>
-          <HiLightningBolt />
-        </div>
-        <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900, fontSize: '1.3rem', letterSpacing: '2px', color: '#F0F2F8' }}>
-          GYM<span style={{ color: '#C8F135' }}>MIX</span>
-        </span>
+      <Link to={isAuthenticated ? '/dashboard' : '/'} style={{ textDecoration: 'none', flexShrink: 0 }}>
+        <LogoFull size={22} fontSize="1.3rem" />
       </Link>
 
       <div style={{ flex: 1 }} />

@@ -11,6 +11,10 @@ const Profile = () => {
   const { user, updateUser } = useAuthStore();
   const toast = useToast();
   const [tab, setTab] = useState('profile');
+
+  useEffect(() => {
+    document.title = 'Gymmix | Profile';
+  }, []);
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({
     firstName: user?.firstName || '',

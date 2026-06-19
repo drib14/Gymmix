@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FiLock, FiEye, FiEyeOff, FiArrowRight } from 'react-icons/fi';
-import { HiLightningBolt } from 'react-icons/hi';
+import { LogoFull } from '../../components/ui/Logo';
 import api from '../../services/api';
 import useToast from '../../hooks/useToast';
 
@@ -16,6 +16,10 @@ const ResetPassword = () => {
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const inputRefs = useRef([]);
+
+  useEffect(() => {
+    document.title = 'Gymmix | Reset Password';
+  }, []);
 
   if (!userId) {
     navigate('/forgot-password');
@@ -56,11 +60,8 @@ const ResetPassword = () => {
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', background: 'radial-gradient(ellipse 80% 60% at 50% -20%, rgba(200,241,53,0.06), transparent)' }}>
       <div style={{ width: '100%', maxWidth: '420px' }} className="animate-fade-in-up">
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '24px' }}>
-            <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'linear-gradient(135deg, #C8F135, #A8D020)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0D0F14' }}>
-              <HiLightningBolt size={18} />
-            </div>
-            <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900, fontSize: '1.3rem', letterSpacing: '2px', color: '#F0F2F8' }}>GYM<span style={{ color: '#C8F135' }}>MIX</span></span>
+          <Link to="/" style={{ display: 'inline-block', textDecoration: 'none', marginBottom: '24px' }}>
+            <LogoFull size={24} fontSize="1.3rem" />
           </Link>
           <h2 style={{ fontFamily: 'Outfit, sans-serif', marginBottom: '6px' }}>Reset your password</h2>
           <p style={{ color: '#6B7280', fontSize: '0.875rem' }}>Enter your OTP and choose a new password.</p>

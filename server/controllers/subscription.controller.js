@@ -102,3 +102,21 @@ exports.cancelSubscription = async (req, res, next) => {
     return sendSuccess(res, 'Subscription cancelled. Access continues until period end.');
   } catch (err) { next(err); }
 };
+
+// ── POST /subscriptions/attach ─────────────────────────────
+exports.attachPayment = async (req, res, next) => {
+  try {
+    const { paymentIntentId, paymentMethodId } = req.body;
+    if (!paymentIntentId || !paymentMethodId) {
+      return sendError(res, 'Missing payment intent or method.', 400);
+    }
+    const intent = await attachPaymentMethod({
+      paymentIntentId,
+      paymentMethodId,
+      returnUrl: `${process.env.CLIENT_URL || 'http://localhost:5173'}/pricing?success=true`,
+    });
+    return sendSuccess(res, 'Payment method attached.', { intent });
+  } catch (err) {
+    next(err);
+  }
+};
